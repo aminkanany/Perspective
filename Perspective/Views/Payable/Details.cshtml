@@ -1,0 +1,56 @@
+﻿@********************************@
+@*  ACCOUNTS PAYABLE - Details  *@
+@********************************@
+
+@model Perspective.Models.Transaction
+
+@{
+    ViewBag.Title = "Payment Details";
+    ViewBag.Description = "Selected account payable information";
+    ViewBag.Icon = "fas fa-credit-card";
+    ViewBag.Direction = "/Payable";
+    ViewBag.IconTitle = "All accounts payable";
+}
+
+<div id="tbl">
+    <dl class="dl-horizontal">
+        <dt>
+            Reference Number
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Trader.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Trader.Name)
+        </dd>
+
+        <dt>
+            Amount
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Payable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+
+
+<button type="button" class="btn Btn" onclick="window.location.href='../Edit/@Model.Id'">Edit</button>
+<button type="button" class="btn btn-danger" onclick="window.location.href='../Delete/@Model.Id'">Remove</button>

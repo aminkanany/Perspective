@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "ERROR";
+}
+
+<div class="error-page">
+    <h2 class="headline text-red">400</h2>
+
+    <div class="error-content">
+        <h3><i class="fa fa-warning text-red"></i> Bad Request</h3>
+
+        <p>
+            The request could not be understood by the server due to malformed syntax. Please, try again.<br>
+            If the problem persists, contact support.
+        </p>
+
+        <a href="@Url.Action("Index", "Home")" class="btn btn-default" role="button">OK</a>
+    </div>
+</div>
+

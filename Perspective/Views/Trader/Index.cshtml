@@ -1,0 +1,84 @@
+﻿@********************@
+@*  TRADER - INDEX  *@
+@********************@
+
+@model IEnumerable<Perspective.Models.Trader>
+
+@{
+    ViewBag.Title = "Traders";
+    ViewBag.Description = "All customers and suppliers";
+    ViewBag.Icon = "fas fa-user-plus";
+    ViewBag.Direction = "/Trader/Create";
+    ViewBag.IconTitle = "Add a new trader";
+    ViewBag.GoogleMap = "https://www.google.co.uk/maps/search/";
+}
+
+@* BEGIN Search *@
+@using (Html.BeginForm("Index", "Trader", FormMethod.Get))
+{
+    <div class="input-group col-md-3">
+        @Html.TextBox("SearchString", null, new { @class = "searchBox form-control roundCorner", @placeholder = "Type a name or company", @title = "Search for a name or company" })
+        <span class="input-group-btn">
+            <button type="submit" name="search" id="search-btn" class="btn btnSearch">
+                <i class="fa fa-search"></i>
+            </button>
+        </span>
+    </div>
+}
+@* END Search *@
+
+@*  'No result' message for searching  *@
+<div @ViewBag.ShowMsg class="searchMsg text-center">
+    <i class="fas fa-exclamation-triangle"></i>
+    <h4>@ViewBag.SearchResultNullMsg</h4>
+</div>
+
+<table @ViewBag.ShowTbl id="tbl" class="table">
+    <tr>
+        <th>
+            Name <a href="@Url.Action("Index", new { sortOrder = ViewBag.SortByName })" class="fas fa-sort" title="Sort by name"></a>
+        </th>
+        <th>
+            Company <a href="@Url.Action("Index", new { sortOrder = ViewBag.SortByCompany })" class="fas fa-sort" title="Sort by company"></a>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company)
+            </td>
+            <td>
+                <a href="tel:@Html.DisplayFor(modelItem => item.Phone)" class="phone" title="Click to make a call!">@Html.DisplayFor(modelItem => item.Phone)</a>
+            </td>
+            <td>
+                <a href="@ViewBag.GoogleMap@Html.DisplayFor(modelItem => item.Address)" target="_blank" class="address" title="Click for directions!">@Html.DisplayFor(modelItem => item.Address)</a>
+            </td>
+            <td class="actions">
+                <a href="@Url.Action("Edit", new { id = item.Id })">
+                    <i class="fas fa-pen-square" title="Edit"></i>
+                </a>
+                <a href="@Url.Action("Details", new { id = item.Id })">
+                    <i class="fab fa-trello" title="View Details"></i>
+                </a>
+                <a href="@Url.Action("Delete", new { id = item.Id })">
+                    <i class="fas fa-window-close" title="Delete"></i>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>

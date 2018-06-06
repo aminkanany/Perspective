@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Today's exchange rate";
+    ViewBag.Description = "Lates exchange rate for British Pound and Euro";
+}
+
+<div id="tbl" class="text-center xe">
+    <h1>&#163; 1 = &#8364; <strong><span id="xeMain"></span></strong></h1>
+    <em>Last update</em>
+    <small><i class="fas fa-calendar-alt"></i><span> </span>@DateTime.Today.Day/@DateTime.Today.Month/@DateTime.Today.Year</small>  
+</div>

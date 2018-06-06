@@ -1,0 +1,69 @@
+﻿@using WebHelpers.Mvc5
+
+<aside class="main-sidebar">
+    <section class="sidebar">
+        @* BEGIN Search *@
+        @using (Html.BeginForm("Index", "Transaction", FormMethod.Get, new { @class = "sidebar-form" }))
+        {
+            <div class="input-group">              
+                @Html.TextBox("SearchString", null, new { @class = "form-control searchBox", @placeholder = "Type Reference Number", @title = "Search for a transaction by reference number", @type = "number" })
+                <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        }
+        @* END Search *@
+        
+        @* BEGIN Menu *@
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">Navigation</li>
+            <li class="@Url.IsLinkActive("Index", "Home")">
+                <a href="@Url.Action("Index", "Home")"><i class="fab fa-delicious"></i><span> Dashboard</span></a>
+            </li>
+            <li class="@Url.IsLinkActive("Index", "Transaction")">
+                <a href="@Url.Action("Index","Transaction")"><i class="fas fa-exchange-alt"></i><span> Transactions</span></a>
+            </li>
+            <li class="@Url.IsLinkActive("Index", "Trader")">
+                <a href="@Url.Action("Index","Trader")"><i class="fas fa-users"></i><span> Traders</span></a>
+            </li>
+            <li class="treeview @Url.IsLinkActive("Index", "Receivable") @Url.IsLinkActive("Create", "Receivable")">
+                <a href="#">
+                    <i class="fas fa-piggy-bank"></i> <span>Accounts receivable</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="@Url.IsLinkActive("Index", "Receivable")">
+                        <a href="@Url.Action("Index","Receivable")">Sales</a>
+                    </li>
+                    <li class="@Url.IsLinkActive("Create", "Receivable")">
+                        <a href="@Url.Action("Create","Receivable")">New Invoice</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview @Url.IsLinkActive("Index", "Payable") @Url.IsLinkActive("Create", "Payable")">
+                <a href="#">
+                    <i class="fas fa-credit-card"></i> <span>Accounts payable</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="@Url.IsLinkActive("Index", "Payable")">
+                        <a href="@Url.Action("Index","Payable")">Payments</a>
+                    </li>
+                    <li class="@Url.IsLinkActive("Create", "Payable")">
+                        <a href="@Url.Action("Create","Payable")">New Payment</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="@Url.IsLinkActive("Report", "Transaction")">
+                <a href="@Url.Action("Report", "Transaction")"><i class="far fa-chart-bar"></i><span> Report</span></a>
+            </li>
+        </ul>
+        @* END Menu *@
+    </section>
+</aside>

@@ -1,0 +1,53 @@
+﻿@**********************@
+@*  TRADER - Details  *@
+@**********************@
+
+@model Perspective.Models.Trader
+
+@{
+    ViewBag.Title = "Trader Details";
+    ViewBag.Description = "Selected customer or supplier information";
+    ViewBag.Icon = "fas fa-users";
+    ViewBag.Direction = "/Trader";
+    ViewBag.IconTitle = "All Traders";
+}
+
+<div id="tbl">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            <a href="tel:@Html.DisplayFor(model => model.Phone)" class="phone">@Html.DisplayFor(model => model.Phone)</a>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+    </dl>
+</div>
+
+<button type="button" class="btn Btn" onclick="window.location.href='../Edit/@Model.Id'">Edit</button>
+<button type="button" class="btn btn-danger" onclick="window.location.href='../Delete/@Model.Id'">Remove</button>

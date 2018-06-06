@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    ViewBag.Description = "Main control panel";
+    ViewBag.Hidden = "hidden";
+}
+
+<div class="row text-center dashboard">
+
+    <button type="button" class="btn" onclick="window.location.href = '/Receivable/Create'">
+        <p>New Invoice</p>
+        <i class="fas fa-receipt"></i>
+    </button>
+
+    <button type="button" class="btn" onclick="window.location.href='/Payable/Create'">
+        <p>New Payment</p>
+        <i class="far fa-credit-card"></i>
+    </button>
+
+    <button type="button" class="btn" onclick="window.location.href='/Trader/Create'">
+        <p>New Trader</p>
+        <i class="fas fa-user-plus"></i>
+    </button>
+
+</div>
+
+<div class="row text-center dashboard">
+
+    <button type="button" class="btn" onclick="window.location.href = '/Receivable'">
+        <p>Sales</p>
+        <i class="fas fa-piggy-bank"></i>
+    </button>
+
+    <button type="button" class="btn" onclick="window.location.href = '/Payable'">
+        <p>Payments</p>
+        <i class="fas fa-money-bill"></i>
+    </button>
+
+    <button type="button" class="btn" onclick="window.location.href='/Transaction'">
+        <p>Transactions</p>
+        <i class="fas fa-exchange-alt"></i>
+    </button>
+
+</div>
+
+<div class="row text-center dashboard">
+
+    <button type="button" class="btn" onclick="window.location.href='/Trader'">
+        <p>All Traders</p>
+        <i class="fas fa-users"></i>
+    </button>
+
+    <button type="button" class="btn" onclick="window.location.href = '/Transaction/Report'">
+        <p>Reports</p>
+        <i class="far fa-chart-bar"></i>
+    </button>
+
+    <button type="button" class="btn" onclick="window.location.href='/Xe'">
+        <p>Exchange Rate</p>
+        <i class="fas fa-pound-sign"></i>
+    </button>
+
+</div>

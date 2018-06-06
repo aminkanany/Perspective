@@ -1,0 +1,64 @@
+﻿@*******************************@
+@*  ACCOUNTS PAYABLE - DELETE  *@
+@*******************************@
+
+@model Perspective.Models.Transaction
+
+@{
+    ViewBag.Title = "Delete Payment";
+    ViewBag.Description = "Remove selected account payable information";
+    ViewBag.Icon = "fas fa-credit-card";
+    ViewBag.Direction = "/Payable";
+    ViewBag.IconTitle = "All accounts payable";
+}
+
+<div class="DeleteMsg">
+    <i class="fas fa-exclamation-triangle"></i><span> Are you sure you want to delete this payment?</span>
+</div>
+
+<div>
+    <dl id="tbl" class="dl-horizontal">
+        <dt>
+            Reference Number
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Trader.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Trader.Name)
+        </dd>
+
+        <dt>
+            Amount
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Payable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Remove" class="btn btn-danger" />
+        </div>
+    }
+</div>

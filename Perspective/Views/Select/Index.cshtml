@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Transactions";
+    ViewBag.Description = "Select a transaction type. New Invoice for account receivable or New Payment for account payable";
+    ViewBag.Icon = "fas fa-exchange-alt";
+    ViewBag.Direction = "/Transaction";
+    ViewBag.IconTitle = "All Transactions";
+    ViewBag.Hidden = "hidden";
+}
+
+<div class="row text-center dashboard">
+    <button type="button" class="btn" onclick="window.location.href = '/Receivable/Create'">
+        <p>New Invoice</p>
+        <i class="fas fa-piggy-bank"></i>
+    </button>
+
+    <button type="button" class="btn" onclick="window.location.href = '/Payable/Create'">
+        <p>New Payment</p>
+        <i class="fas fa-credit-card"></i>
+    </button>
+</div>

@@ -1,0 +1,122 @@
+﻿@**********************@
+@*  ALL TRANSACTIONS  *@
+@**********************@
+
+@model IEnumerable<Perspective.Models.Transaction>
+
+@{
+    ViewBag.Title = "Transactions";
+    ViewBag.Description = "All accounts receivable and payable";
+    ViewBag.Icon = "far fa-plus-square";
+    ViewBag.Direction = "/Select";
+    ViewBag.IconTitle = "Add a new transaction";
+    var totalIn = Model.Sum(t => t.Receivable);
+    var totalOut = Model.Sum(t => t.Payable);
+}
+
+@*  'No result' message for searching  *@
+<div @ViewBag.ShowMsg class="searchMsg text-center">
+    <i class="fas fa-exclamation-triangle"></i>
+    <h3>@ViewBag.SearchResultNullMsg</h3>
+</div>
+
+@*  All transaction table  *@
+<table @ViewBag.ShowTbl id="tbl" class="table">
+    <tr>
+        <th>
+            Reference Number
+        </th>
+        <th>
+            Date <a href="@Url.Action("Index", new { sortOrder = ViewBag.SortByDate })" class="fas fa-sort" title="Sort by date"></a>
+        </th>
+        <th>
+            Name <a href="@Url.Action("Index", new { sortOrder = ViewBag.SortByName })" class="fas fa-sort" title="Sort by name"></a>
+        </th>
+        <th>
+            Income
+        </th>
+        <th>
+            Payment
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trader.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Receivable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Payable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td class="actions">
+                @{string path = "";
+                    if (item.Receivable == 0)
+                    {
+                        path = "/Payable";
+                    }
+                    if (item.Payable == 0)
+                    {
+                        path = "/Receivable";
+                    }
+                }
+                <a href="@path/Edit/@item.Id">
+                    <i class="fas fa-pen-square" title="Edit"></i>
+                </a>
+                <a href="@path/Details/@item.Id">
+                    <i class="fab fa-trello" title="View Details"></i>
+                </a>
+                <a href="@path/Delete/@item.Id">
+                    <i class="fas fa-window-close" title="Delete"></i>
+                </a>
+            </td>
+        </tr>
+                    }
+    <tr class="bg-black-gradient">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+
+        <td>
+            <strong><i class="fas fa-calendar-alt"></i><span> </span>@DateTime.Today.Year/@DateTime.Today.Month/@DateTime.Today.Day</strong>
+        </td>
+
+        <td>
+            <strong>Total:</strong>
+        </td>
+
+        <td>
+            <strong>&#163; @totalIn</strong>
+        </td>
+
+        <td>
+            <strong>&#163; @totalOut</strong>
+        </td>
+    </tr>
+
+</table>

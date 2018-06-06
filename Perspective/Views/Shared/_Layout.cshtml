@@ -1,0 +1,62 @@
+﻿@using System.Web.Optimization
+@using WebHelpers.Mvc5.Enum
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>
+        Perspective -
+        @if (!string.IsNullOrWhiteSpace(ViewBag.Title))
+        {
+            @ViewBag.Title@:
+        }
+    </title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="https://fonts.googleapis.com/css?family=Rochester" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon" />
+    @Styles.Render("~/Bundles/css")
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="hold-transition skin-black sidebar-mini">
+    <div class="wrapper">
+        @Html.Partial("_Header")
+        @Html.Partial("_Sidebar")
+
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-10 pull-left">
+                    <section class="content-header">
+                        <h1>
+                            @ViewBag.Title
+                        </h1>
+                        <small>@ViewBag.Description</small>
+                    </section>
+                </div>
+                <div class="col-md-1 pull-right navBtn" @ViewBag.Hidden>
+                    <a href="#" onclick="printTbl()"><i class="fas fa-print" title="Print"></i></a>
+                </div>
+                <div class="col-md-1 pull-left navBtn">
+                    <a href="@ViewBag.Direction"><i class="@ViewBag.Icon" title="@ViewBag.IconTitle"> </i></a>
+                </div>
+            </div>
+            <section class="content">
+                @RenderBody()
+            </section>
+        </div>
+
+        @Html.Partial("_ControlSidebar")
+    </div>
+
+    <script src="@RouteJs.RouteJsHandler.HandlerUrl"></script>
+    <script src="@EnumHandler.HandlerUrl"></script>
+    @Scripts.Render("~/Bundles/js")
+    @RenderSection("ViewSpecificJavascript", required: false)
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+</html>

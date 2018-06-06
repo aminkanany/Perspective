@@ -1,0 +1,23 @@
+﻿@**************************@
+@*  TRANSACTION - REPORT  *@
+@**************************@
+
+@model IEnumerable<Perspective.Models.Transaction>
+
+@{
+    ViewBag.Title = "Transactions Chart";
+    ViewBag.Description = "Compare all accounts receivable and payable";
+    ViewBag.Icon = "fas fa-exchange-alt";
+    ViewBag.Direction = "/Transaction";
+    ViewBag.IconTitle = "All transaction";
+    var totalIn = Model.Sum(t => t.Receivable);
+    var totalOut = Model.Sum(t => t.Payable);
+}
+
+<html>
+<body onload="showChart(@totalIn ,@totalOut)">
+    <div id="tbl">
+        <div id="chart" style="width: 900px; height: 500px;"></div>
+    </div>
+</body>
+</html>
